@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simon Says Game</title>
+    <title>Neon Simon</title>
     <link rel="stylesheet" href="style.css" />
-  </head>
-  <body>
-    <h1>Simon Says Game</h1>
-    <h2>Press any key to start the game</h2>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="game-container">
+        <header>
+            <h1><span>SIMON SAYS</span></h1>
+            <div class="level-display">
+                <span>LEVEL</span>
+                <div class="level-number">0</div>
+            </div>
+        </header>
 
-    <div class="btn-conatiner">
-      <div class="circle">
-        <div class="line-1">
-          <div class="btn red" type="button" id="red"></div>
-          <div class="btn yellow" type="button" id="yellow"></div>
+        <div class="game-board">
+            <div class="quadrant top-left" id="green"></div>
+            <div class="quadrant top-right" id="red"></div>
+            <div class="quadrant bottom-left" id="yellow"></div>
+            <div class="quadrant bottom-right" id="blue"></div>
+            <div class="center-circle">
+                <div class="start-btn">START</div>
+            </div>
         </div>
-        <div class="line-2">
-          <div class="btn green" type="button" id="green"></div>
-          <div class="btn blue" type="button" id="blue"></div>
-        </div>
-      </div>
+
+        <div class="message">Press START or any key</div>
     </div>
 
     <script src="app.js"></script>
-  </body>
+</body>
 </html>

@@ -1,68 +1,206 @@
-body{
-    text-align: center;
+:root {
+    --neon-green: #00ff9d;
+    --neon-red: #ff2a6d;
+    --neon-yellow: #f9f002;
+    --neon-blue: #05d9e8;
+    --dark-bg: #0d0221;
+    --darker-bg: #05010f;
+    --text-glow: 0 0 10px currentColor;
 }
 
-h2{
-    color: gray;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.btn{
-    height: 160px;
-    width: 160px;
-    border-radius: 20%;
-    border: 5px solid white;
-    margin: 2.5rem;
-    cursor: pointer;
-}
-
-.circle{
-    background-color: black;
-    opacity: 0.9;
-    height: 600px;
-    max-width: 600px;
-    border-radius: 50%;
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: var(--dark-bg);
+    color: white;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: auto;
+    overflow: hidden;
 }
 
-.red{
-    background-color: rgb(224, 20, 20);
+.game-container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    text-align: center;
 }
 
-.red:hover{
-    transform: scale(1.01);
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
 }
 
-.green{
-    background-color: rgb(50, 167, 50);
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
 }
 
-.green:hover{
-    transform: scale(1.01);
+h1 span {
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue);
 }
 
-.blue{
-    background-color: rgb(25, 25, 187);
+.level-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.blue:hover{
-    transform: scale(1.01);
+.level-display span {
+    font-size: 0.9rem;
+    color: var(--neon-blue);
+    margin-bottom: 5px;
 }
 
-.yellow{
-    background-color: rgb(179, 179, 18);
+.level-number {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--neon-green);
+    text-shadow: var(--text-glow);
 }
 
-.yellow:hover{
-    transform: scale(1.01);
+.game-board {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    margin: 0 auto;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(5, 217, 232, 0.3);
 }
 
-.flash{
-    background-color: white;
+.quadrant {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    opacity: 0.3;
+    transition: all 0.2s ease;
+    cursor: pointer;
 }
 
-.userflash{
-    background-color: rgb(14, 42, 14);
+.quadrant:hover {
+    opacity: 0.5;
+}
+
+.top-left {
+    top: 0;
+    left: 0;
+    background-color: var(--neon-green);
+    border-top-left-radius: 100%;
+}
+
+.top-right {
+    top: 0;
+    right: 0;
+    background-color: var(--neon-red);
+    border-top-right-radius: 100%;
+}
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+    background-color: var(--neon-yellow);
+    border-bottom-left-radius: 100%;
+}
+
+.bottom-right {
+    bottom: 0;
+    right: 0;
+    background-color: var(--neon-blue);
+    border-bottom-right-radius: 100%;
+}
+
+.center-circle {
+    position: absolute;
+    width: 30%;
+    height: 30%;
+    background-color: var(--darker-bg);
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+    z-index: 10;
+}
+
+.start-btn {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 500;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+
+.start-btn:hover {
+    color: var(--neon-green);
+    text-shadow: var(--text-glow);
+}
+
+.message {
+    margin-top: 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+}
+
+/* Active states */
+.flash {
+    opacity: 1 !important;
+    box-shadow: 0 0 30px currentColor;
+}
+
+.userflash {
+    opacity: 0.8 !important;
+    box-shadow: 0 0 20px currentColor;
+}
+
+/* Game over effect */
+.game-over {
+    animation: gameOverFlash 0.5s alternate 3;
+}
+
+.game-over {
+    background-color: var(--neon-red) !important;
+}
+
+@keyframes gameOverFlash {
+    from { background-color: var(--dark-bg); }
+    to { background-color: var(--neon-red); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .level-number {
+        font-size: 1.5rem;
+    }
+    
+    .start-btn {
+        font-size: 1rem;
+    }
+    
+    .message {
+        font-size: 1rem;
+    }
 }
